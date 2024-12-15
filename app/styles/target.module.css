@@ -1,0 +1,197 @@
+
+.categoryContainer{
+    margin-left: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 5px;
+}
+.separator{
+    height: 25px;
+    width: 5px;
+    background-color: var(--bg-color);
+    border-radius: 15px;
+}
+.modeButton{
+    color: var(--pre-text-color);
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 60px;
+    /*border: solid 1px white;*/
+    
+}
+.modeButtonSelected{
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 60px;
+    /*border: solid 1px white;*/
+}
+.countButton{
+    color: var(--pre-text-color);
+    display: flex;
+    cursor: pointer;
+    margin-right: 15px;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    /*border: solid 1px white;*/
+}
+.countButtonSelected{
+    display: flex;
+    cursor: pointer;
+    margin-right: 15px;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    /*border: solid 1px white;*/
+}
+.lengthButton{
+    color: var(--pre-text-color);
+    display: flex;
+    cursor: pointer;
+    margin-right: 15px;
+    margin-left: 10px;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    /*border: solid 1px white;*/
+}
+.lengthButtonSelected{
+    display: flex;
+    cursor: pointer;
+    margin-right: 15px;
+    margin-left: 10px;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    /*border: solid 1px white;*/
+}
+.trackerParent{
+    /*border: 3px solid yellow;*/
+    height: 40px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+
+}
+.tracker {
+    display: inline-block;
+    height:40px;
+    width: 40px;
+    font-size: 20px;
+    text-align: left;
+    /*border: solid 1px white;*/ 
+    margin-right: 5px;
+    
+}
+.prompt{
+    height: 300px;
+    width: 80%;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    word-wrap: break-word;
+    /*border: solid 1px white;*/ 
+    
+    
+}
+.word{
+    display: inline-flex; 
+}
+.characterElement{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    height: 20px;
+    font-family: 'Nunito';
+    /*border: solid 1px white;*/ 
+    
+}
+.generate{
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 80px;
+    border: solid 2px var(--title-color);
+}
+
+.typeSettingsButtons{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    height: 40px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-light-color);
+    border-radius: 10px;
+}
+
+.instructions{
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18px;
+
+}
+
+.targetButtonContainer{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+    width: 500px;
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+}
+.targetButton{
+    height: 50px;
+    width: 40px;
+    cursor: pointer;
+    font-size: x-large;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 2px var(--title-color)
+}
+.selectedTarget{
+    height: 50px;
+    width: 40px;
+    cursor: pointer;
+    font-size: x-large;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-light-color);
+    border: solid 2px var(--title-color)
+}
+.continue{
+    cursor: pointer;
+    font-size: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    padding: 5px;
+    width: fit-content;
+    border: solid 2px var(--title-color)
+}

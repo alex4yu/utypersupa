@@ -1,0 +1,24 @@
+.typeStats{
+    margin-top: 10px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 40px;
+}
+.typeStat{
+    font-size: 22px;
+    margin-left: 30px;
+}
+
+.generate{
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 80px;
+    border: solid 2px var(--title-color);
+}

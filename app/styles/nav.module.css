@@ -1,0 +1,45 @@
+.logo{
+    font-size: x-large;
+}
+.link{
+    margin-left: 20px;
+    cursor: pointer;
+    font-size: large;
+}
+.accountLink{
+    margin-right: 40px;
+    margin-left: auto;
+    cursor: pointer;
+    font-size: large;
+}
+.signup{
+    margin-right: 20px;
+    margin-left: auto;
+    cursor: pointer;
+    font-size: large;
+    width: 80px;
+    height: 26px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    border-radius: 15px;
+    border: 2px solid var(--title-color);
+}
+.signup:hover{
+    background-color: var(--bg-light-color);
+}
+.login{
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: large;
+    width: 80px;
+    height: 26px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    border-radius: 15px;
+    border: 2px solid var(--title-color);;
+}
+.login:hover{
+    background-color: var(--bg-light-color);
+}

@@ -1,0 +1,83 @@
+.inputArea{
+    height: fit-content;
+    width: fit-content;
+    padding: 20px;
+    border: 2px solid var(--pre-text-color);
+    border-radius: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.title{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+
+}
+.inputForm{
+    display: grid;
+    gap: 10px;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+}
+.labels{
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    
+}
+.inputs{
+    display: flex;
+    flex-direction: column;
+}
+.inputLabel{
+    height: 20px; /* match with height of formInput*/
+}
+.formInput{
+    height: 20px;
+    width: 200px;
+    background-color: var(--bg-light-color);
+    color: var(--title-color);
+}
+.formInput:focus {
+    outline: 1px solid var(--title-color); /* Change color to green */
+}
+.formSubmit{
+    height: 40px;
+    width: 200px;
+    margin-top: 10px;
+    justify-self: center;
+    grid-column: 1 / -1;
+    background-color: var(--bg-color);
+    border: 3px solid var(--title-color);
+    border-radius: 20px;
+    font-size: 16px;
+    color: var(--title-color);
+    cursor: pointer;
+}
+.formSubmit:hover{
+    background-color: var(--bg-light-color);
+}
+.error{
+    height: fit-content;
+    margin-top: 10px;
+    grid-column: 1 / -1;
+    justify-self: center;
+    color: var(--wrong-color);
+}
+.success{
+    grid-column: 1 / -1;
+    justify-self: center;
+    color: var(--wrong-color);
+}
+.noAccount{
+    color: var(--pre-text-color)
+}
+.signUpBtn{
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 14;
+}

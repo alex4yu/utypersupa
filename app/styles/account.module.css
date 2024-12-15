@@ -1,0 +1,25 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.header{
+    font-size: 30px;
+    margin-bottom: 20px;
+
+}
+.section{
+    margin-bottom: 10px;
+}
+.button{
+    width: fit-content;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 15px;
+    border: 2px solid var(--title-color);
+    cursor: pointer;
+    margin-bottom: 10px;
+}
