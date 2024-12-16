@@ -156,3 +156,97 @@ export const getUserProfile = async () => {
       }
   }
 }
+
+export const getUserStats = async () => {
+  console.log("get user stats");
+  const supabase = await createClient()
+  const {data: { user }} = await supabase.auth.getUser()
+  if(!user){
+    return {error: "no user"};
+  }
+  else{
+    try{
+      const { data: userData, error: userDataError } = await supabase
+        .from('user_basic_data')
+        .select('*')
+        .eq('id', user.id)
+        .single();
+
+      if (userDataError) {
+        console.error('Error fetching user data:', userDataError.message);
+      } else {
+        return ({
+          bestWpm: userData.best_wpm, 
+          lifeAccuracy: userData.life_accuracy,
+          totalWords: userData.total_words 
+        });
+      }
+    } catch (error) {
+      return ({error: "error loading user data"});
+    }
+  }
+}
+
+type TestResult = {
+  wpm: number,
+  words: number,
+  charsCorrect: number,
+  totalChars: number,
+}
+export const updateUserStats = async({wpm, words, charsCorrect, totalChars}: TestResult) => {
+  console.log("Entering updateUserStats function");
+  console.log("try update stats");
+  const supabase = await createClient()
+  const {data: { user }} = await supabase.auth.getUser()
+  if(!user){
+    console.log("try update stats but no user")
+    return {error: "no user"};
+  }
+  else{
+    try{
+      const { data: userData, error: userDataError } = await supabase
+        .from('user_basic_data')
+        .select('*')
+        .eq('id', user.id)
+        .single();
+
+      if (userDataError) {
+        console.error('Error fetching user data:', userDataError.message);
+      } else {
+        const bestWpm = userData.best_wpm;
+        const lifeAccuracy = userData.life_accuracy;
+        const totalWords = userData.total_words;
+        const totalCharacters = userData.total_characters
+
+        const newBestWpm = Math.max(bestWpm, wpm);
+        const newTotalWords = totalWords + words;
+        const newTotalChars = totalCharacters + totalChars;
+        const newAccuracy = (lifeAccuracy * totalCharacters + charsCorrect) / newTotalChars;
+        
+        console.log("trying to update stats")
+        try{
+          const { error: updateError } = await supabase
+          .from("user_basic_data")
+          .update({
+            best_wpm: newBestWpm,
+            life_accuracy: newAccuracy,
+            total_words: newTotalWords,
+            total_characters: newTotalChars
+          })
+          .eq("id", user.id);
+
+          if (updateError) {
+            throw new Error(`Failed to update user data: ${updateError.message}`);
+          }
+        } catch(error){
+          console.error(error);
+        }
+        
+
+      }
+    } catch (error) {
+      console.log("error loading user data");
+    }
+    return;
+  }
+}

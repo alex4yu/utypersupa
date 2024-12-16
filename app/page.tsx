@@ -4,6 +4,7 @@ import styles from "@styles/index.module.css";
 import WordContainer from "@components/WordContainer";
 import ResultsDisplay from "@/components/ResultsDisplay";
 import SettingsContext from "@utils/settingsContext";
+import { getUserStats, updateUserStats } from "./Accounts/actions";
 
 
 
@@ -272,7 +273,7 @@ export default function Index() {
   };
 
   //when the test finishes process test and display results
-  const finishTest = () =>{
+  const finishTest = async() =>{
     const wpm = checkWPM();
     let timeTaken = Math.floor((Date.now() - startTime)/10)/100;
     //alert(firstTryCorrectCount);
@@ -281,7 +282,20 @@ export default function Index() {
     setTotaltime(timeTaken);
     setWpm(wpm);
     setAccuracy(accuracy);
+    
+    try{
+      await updateUserStats({
+        wpm: wpm, 
+        words: typedText.split(" ").length, 
+        charsCorrect: firstTryCorrectCount,
+        totalChars: typedText.length
+      })
+    } catch(error){
+      console.error(error);
+    }
+
   }
+
   
   const handleClick = (event: MouseEvent) => {
     if(document.getElementById("prompt") === null){

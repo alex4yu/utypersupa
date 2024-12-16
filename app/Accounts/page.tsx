@@ -1,7 +1,7 @@
 "use client"
 import { useContext, useEffect, useState } from 'react';
 import SettingsContext from '@/utils/settingsContext';
-import { getUserProfile } from './actions';
+import { getUserProfile, getUserStats } from './actions';
 import { redirect, useRouter } from 'next/navigation';
 import styles from "@styles/account.module.css";
 
@@ -20,6 +20,10 @@ export default function Account() {
     const [loading, setLoading] = useState(true)
     const [email, setEmail] = useState<string | undefined>("")
     const [username, setUsername] = useState("");
+    const [bestWPM, setBestWPM] = useState("");
+    const [lifeAccuracy, setLifeAccuracy] = useState("");
+    const [totalWords, setTotalWords] = useState("");
+
     
     useEffect(() => {
         const fetchUserProfile = async () => {
@@ -42,9 +46,34 @@ export default function Account() {
             } catch (error) {
                 console.error('Failed to fetch user profile:', error);
             }
-            setLoading(false);
         };
     
+        const fetchUserStats = async() => {
+            try {
+                const response = await getUserStats();
+                if(response?.error){
+                    //console.log(response.error);
+                    if(response.error === "no user"){
+                        router.push("/Accounts/login");
+                    }
+                    else{
+                        alert(response.error);
+                    }
+                }
+                else{
+                    setBestWPM(response?.bestWpm);
+                    const accuracy = Math.floor(response?.lifeAccuracy * 10000) / 100 + "%";
+                    setLifeAccuracy(accuracy);
+                    setTotalWords(response?.totalWords);
+                }
+
+                
+            } catch (error) {
+                console.error('Failed to fetch user profile:', error);
+            }
+        }
+
+        fetchUserStats();
         fetchUserProfile();
     }, [])
 
@@ -82,25 +111,26 @@ export default function Account() {
 
             <div className={styles.header}>{`Hello ${username}`}</div>
 
-            <div className={styles.section}>
-                <label htmlFor="email">Email</label>
-                <input id="email" type="text" value={email} disabled />
-            </div>
-            <div className={styles.section}>
-                <label htmlFor="username">Username</label>
-                <input
-                id="username"
-                type="text"
-                value={username || ''}
-                onChange={(e) => setUsername(e.target.value)}
-                />
-            </div>
+            <div className={styles.section}>Email: {email}</div>
+            <div className={styles.section}>Username: {username}</div>
             
-            <div className={styles.button} onClick={() => updateProfile(username)}>
+            {/**
+             * <div className={styles.button} onClick={() => updateProfile(username)}>
                 {loading ? 'Loading ...' : 'Update'}
-            </div>
-
+                </div>
+             */}
             <div className={styles.button} onClick={handleSignout}> Sign out </div>
+            <div className={styles.statsTitle}>Statistics</div>
+            <div className={styles.statsContainer}>
+                <div>Best WPM on test: </div>
+                <div>{bestWPM}</div>
+                <div>Lifetime accuracy: </div>
+                <div>{lifeAccuracy}</div>
+                <div>Total Words Typed: </div>
+                <div>{totalWords}</div>
+
+
+            </div>
         </div>
     )
 }
