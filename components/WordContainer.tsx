@@ -1,9 +1,9 @@
 import CharElement from "./CharElement";
 import styles from "@styles/index.module.css"
-import { CharData, WordData } from "@/pages";
+import { CharData, WordData } from "@app/page";
 
 type WordContainerProps = {
-    wordObj: WordData; // Adjust the type based on wordObj's structure
+    wordObj: WordData; 
     letters: CharData[];
     cursorPos: number;
 };

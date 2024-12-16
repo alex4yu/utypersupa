@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import SettingsContext from "../utils/settingsContext";
 import styles from '@styles/index.module.css';
-import { CharData } from "@/pages";
+import { CharData } from "@app/page";
 
 type CharElementProps = {
     letterObj: CharData; 

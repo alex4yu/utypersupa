@@ -19,14 +19,24 @@ export const SettingsProvider = ({ children }) => {
   };
 
 
-  const [settings, setSettings] = useState(() => {
-    const savedSettings = localStorage.getItem("settings");
-    return savedSettings ? JSON.parse(savedSettings) : defaultSettings;
-  });
+  const [settings, setSettings] = useState(defaultSettings);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem("settings", JSON.stringify(settings));
-  }, [settings]);
+    if (typeof window !== "undefined") {
+      const savedSettings = localStorage.getItem("settings");
+      if (savedSettings) {
+        setSettings(JSON.parse(savedSettings));
+      }
+      setIsLoaded(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isLoaded) {
+      localStorage.setItem("settings", JSON.stringify(settings));
+    }
+  }, [settings, isLoaded]);
 
   const updateSettings = (newSettings) => {
     setSettings((prevSettings) => ({
@@ -34,6 +44,10 @@ export const SettingsProvider = ({ children }) => {
       ...newSettings,
     }));
   };
+
+  if (!isLoaded) {
+    return null; 
+  }
 
   return (
     <SettingsContext.Provider value={{ settings, updateSettings }}>
