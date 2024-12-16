@@ -1,4 +1,5 @@
 import { SettingsProvider } from "@/utils/settingsContext";
+import { Analytics } from '@vercel/analytics/next';
 import Navbar from "@/components/Navbar";
 import "@styles/global.css"
 export const metadata = {
@@ -18,6 +19,7 @@ export default function RootLayout({
           <div className="content">
             <Navbar/>
             {children}
+            <Analytics />
           </div>
         </SettingsProvider>
       </body>
